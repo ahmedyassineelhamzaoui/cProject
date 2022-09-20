@@ -32,7 +32,6 @@
 	}Produit;
      
    typedef struct stat{
-   	 char tiime[25];
    	 float tot;
    	 float max;
    	 float min;
@@ -45,7 +44,7 @@
 //  printf("%i/%i/%i\n",mytime->tm_mon+1,mytime->tm_mday,mytime->tm_year+1900); 
      
   stat st;
-  
+ 
   Produit p[100];
   // la fonction ajouter Produit
   int i=0,j;
@@ -60,6 +59,7 @@
 //      s[r]=toupper(s[r]);
 //    }
 //}
+
 
     void AjouterProduit(){
     	
@@ -270,19 +270,20 @@
 		     st.day_achat=(dt->tm_mday);
 		     st.month_achat=(dt->tm_mon+1);
 		     st.year_achat=(dt->tm_year+1900);
-             st.max=p[0].prix;
-			 st.min=p[0].prix;
-             if(p[j].prix<st.min){
-             	st.min=p[j].prix;
-			 }
-			 if(p[j].prix>st.max){
-			 	st.max=p[j].prix;
-			 }
-             st.tot+=p[j].prix*q;
-//		   	 strcpy(st.tiime,ctime(&ti));
+		    
+		     st.tot+=p[j].prix*q;
         	 p[j].quantite-=q;
-//        	 st.tot1+=p[j].prix;
-        	// il faut enregistrer la date et le prix ttc ;
+        	 if(j==0){
+        	 	st.max=p[0].prix*q;
+        	 	st.min=p[0].prix*q;
+			 }else{
+             if(p[j].prix*q<=st.min){
+             	st.min=p[j].prix*q;
+			 }
+			 else if(p[j].prix*q>=st.max){
+			 	st.max=p[j].prix*q;
+			 }
+              }
         	int n;
 			printf("\n\topération bien éfectuer");
 		    l++;
@@ -629,7 +630,7 @@
 //    		    	st.tot+=p[j].prix;
 //				}
 				SetColor(5);
-    		    printf("\n\tle total des prix des produits vendus en journée courante sont:%.2f dont la date est %s\t",st.tot,st.tiime);
+    		    printf("\n\tle total des prix des produits vendus en journée courante sont:%.2f dont la date est %i/%i/%i \t",st.tot,st.day_achat,st.month_achat,st.year_achat);
     		    SetColor(2);
     		    printf("\n\t0->Retour au menu précedant ");
     		    printf("\n\t1->Retour au menu principale\n\t");
@@ -683,7 +684,7 @@
 				}
 				}else{
 				
-				printf("\n\t la moyenne des prix des produits vendus en journée courante est:%.2f dont la date est %s\t\n",st.tot/l,st.tiime);
+				printf("\n\t la moyenne des prix des produits vendus en journée courante est:%.2f dont la date est %i/%i/%i t\n",st.tot/l,st.day_achat,st.month_achat,st.year_achat);
     			SetColor(2);
     		    printf("\n\t0->Retour au menu précedant ");
     		    printf("\n\t1->Retour au menu principale\n\t");
@@ -710,7 +711,7 @@
 			case 3:
 				system("cls");    			
 				SetColor(5);
-    			printf("\n\tle Max des prix des produits vendus en journée courante sont :%.2f dont la date est %s\t\t",st.max);
+    			printf("\n\tle Max des prix des produits vendus en journée courante sont :%.2f dh dont la date est %i/%i/%i \t",st.max,st.day_achat,st.month_achat,st.year_achat);
     			 SetColor(2);
     		    printf("\n\n\t0->Retour au menu précedant ");
     		    printf("\n\t1->Retour au menu principale\n\t");
@@ -737,7 +738,7 @@
 			    system("cls");
 			 
 				SetColor(5);
-    			printf("\tle Min des prix des produits vendus en journée courante sont :%.2f dont la date est %s\t\t",st.min);
+    			printf("\n\tle Min des prix des produits vendus en journée courante sont :%.2f dh dont la date est %i/%i/%i \t",st.min,st.day_achat,st.month_achat,st.year_achat);
     			 SetColor(2);
     		    printf("\n\t0->Retour au menu précedant ");
     		    printf("\n\t1->Retour au menu principale\n\t");

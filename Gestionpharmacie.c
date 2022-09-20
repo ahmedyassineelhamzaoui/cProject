@@ -147,7 +147,7 @@
     	case 1:
     		system("cls");
     		SetColor(5);
-			printf("\n\tProduit :Nom \t Prix \t PrixTTc  \n");
+//			printf("\n\tProduit :Nom \t Prix \t PrixTTc  \n");
     		for(j=0;j<i;j++){
     			for(k=j+1;k<i;k++){
     				if(strcasecmp(p[j].nom,p[k].nom)>0){
@@ -159,7 +159,7 @@
 				}
 			}
             for(j=0;j<i;j++){
-    	    printf("\n\tP[%d]   :%s \t %.2f \t %.2f  \n",j+1,p[j].nom,p[j].prix,p[j].prix*1.15);
+    	    printf("\n\tP[%d]   :Nom %s \t Prix %.2f \t PrixTTC %.2f  \n",j+1,p[j].nom,p[j].prix,p[j].prix*1.15);
     		}
 			SetColor(6);
 		   	printf("\n\t0-> Retour au menu principale\n");
@@ -188,7 +188,7 @@
     	case 2:
     	system("cls");
     	SetColor(5);
-    	printf("\n\tProduit :Nom \t Prix \t PrixTTc \t la date d'achat \n");
+//    	printf("\n\tProduit :Nom \t Prix \t PrixTTc \t la date d'achat \n");
 
     		for(j=0;j<i;j++){
     		for(k=j+1;k<i;k++){
@@ -200,7 +200,7 @@
     	    }
     	   	}
             for(j=0;j<i;j++){
-    	    printf("\tP[%d]   :%s \t %.2f \t %.2f \n",j+1,p[j].nom,p[j].prix,p[j].prix*1.15);
+    	    printf("\tP[%d]  	Nom :%s \t Prix %.2f \t PrixTTC %.2f \n",j+1,p[j].nom,p[j].prix,p[j].prix*1.15);
     	    }
     	    SetColor(6);
     	    printf("\n\t0-> Retour au menu principale\n");
@@ -277,20 +277,20 @@
         	 	st.max=p[0].prix*q;
         	 	st.min=p[0].prix*q;
 			 }else{
-             if(p[j].prix*q<=st.min){
+             if(p[j].prix*q<st.min){
              	st.min=p[j].prix*q;
 			 }
-			 else if(p[j].prix*q>=st.max){
+			 else if(p[j].prix*q>st.max){
 			 	st.max=p[j].prix*q;
 			 }
               }
         	int n;
-			printf("\n\topération bien éfectuer");
+			printf("\n\topération bien éfectuer\n");
 		    l++;
 			
 //			printf(ctime(&t));
             SetColor(2);
-			printf("\n\t0-> retour au menu principale\t\n");
+			printf("\n\t0-> retour au menu principale\n\t");
 			scanf("%d",&n);
 			while(n!=0){
 				SetColor(4);
@@ -304,7 +304,8 @@
 
     
 	}else{
-		printf("\t le code que tu as entrer n'éxiste pas\n");
+		SetColor(4);
+		printf("\n\tle code que tu as entrer n'éxiste pas\n");
 		goto first;
 	}
 
@@ -341,7 +342,7 @@
 	  	scanf("%s",c);
 	  	for(j=0;j<i;j++){
 	  		if(strcmp(p[j].code,c)==0){
-	  	   	printf("P[%d]   :%s \t %.2f \t %.2f \n",j+1,p[j].nom,p[j].prix,p[j].prix*1.15);
+	  	   	printf("P[%d]  Nom :%s \t Prix %.2f \t PrixTTC %.2f \n",j+1,p[j].nom,p[j].prix,p[j].prix*1.15);
 			 cmp++;
 			}
 		  }
@@ -403,7 +404,7 @@
 	  	scanf("%d",&qu);
 	  	for(j=0;j<i;j++){
 	  		if(p[j].quantite==qu){
-	  	   	printf("\tP[%d]   :%s \t %.2f \t %.2f \n",j+1,p[j].nom,p[j].prix,p[j].prix*1.15);
+	  	   	printf("\tP[%d]   Nom :%s \t Prix %.2f \t PrixTTC %.2f \n",j+1,p[j].nom,p[j].prix,p[j].prix*1.15);
 			 cmp++;
 			}
 		  }
@@ -466,13 +467,12 @@
   
     void EtatStock(){
     	int comp=0;
-    
 	SetColor(5);
 	printf("\n\tles produit dont la quantité inferieur à 3 est : \n");
 	for(j=0;j<i;j++){
 		if(p[j].quantite<3){
 		 SetColor(8);
-		 printf("\n\tP[%d]   :%s \t %.2f \t %.2f \n",j+1,p[j].nom,p[j].prix,p[j].prix*1.15);
+		 printf("\n\tP[%d]  Nom :%s \t Prix %.2f \t PrixTTC %.2f \n",j+1,p[j].nom,p[j].prix,p[j].prix*1.15);
 		 comp++;
 		}
 	}
@@ -740,9 +740,9 @@
 				SetColor(5);
     			printf("\n\tle Min des prix des produits vendus en journée courante sont :%.2f dh dont la date est %i/%i/%i \t",st.min,st.day_achat,st.month_achat,st.year_achat);
     			 SetColor(2);
-    		    printf("\n\t0->Retour au menu précedant ");
+    		    printf("\n\n\t0->Retour au menu précedant ");
     		    printf("\n\t1->Retour au menu principale\n\t");
-                scanf("%d",m);
+                scanf("%d",&m);
                  menu3:
                 switch(m){
                 	case 1:
@@ -794,30 +794,32 @@
     printf("\\ \n\n");
     SetColor(9);
               // menu
-    printf("\t1-> Ajouter un nouveau produit\n");
+    printf("\t1-> Ajouter un nouveau produit\n\n");
     usleep(100000);
-    printf("\t2-> Ajouter plusieurs nouveaux produits\n");
+    printf("\t2-> Ajouter plusieurs nouveaux produits \n\n");
     usleep(100000);
-    printf("\t3-> Lister tous les produits \n");
+    printf("\t3-> Lister tous les produits \n\n");
     usleep(100000);
-    printf("\t4-> Acheter un produit\n");
+    printf("\t4-> Acheter un produit\n\n");
     usleep(100000);
-    printf("\t5-> Rechercher des produits \n");
+    printf("\t5-> Rechercher des produits \n\n");
     usleep(100000);
-    printf("\t6-> Etat du stock\n");
+    printf("\t6-> Etat du stock\n\n");
     usleep(100000);
-    printf("\t7-> Alimenter le stock\n");
+    printf("\t7-> Alimenter le stock\n\n");
     usleep(100000);
-    printf("\t8-> Supprimer les produits\n");
+    printf("\t8-> Supprimer les produits\n\n");
     usleep(100000);
     printf("\t9-> Statistique de vente\n\n");
+    usleep(100000);
+    printf("\t10-> Quitter l'application\n\n");
     usleep(100000);
     SetColor(15);
     int numerooperation;
     do{
     printf("\tchoisire votre propre opération :\n\t");
     scanf("%d",&numerooperation);
-	}while(numerooperation<1 || numerooperation>9);
+	}while(numerooperation<1 || numerooperation>10);
     system("cls");
     switch (numerooperation)
 	{
@@ -847,6 +849,9 @@
     	break;
     	case 9:
     		StatistiqueVente();
+    	break;
+    	case 10:
+    		exit(0);
     	break;
 	}
 	

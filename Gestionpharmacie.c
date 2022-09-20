@@ -36,6 +36,9 @@
    	 float tot;
    	 float max;
    	 float min;
+     int day_achat;
+     int month_achat;
+     int year_achat;
    }stat;
 
 //    struct tm *mytime=localtime(&ti);
@@ -49,18 +52,19 @@
   int k=0;
   int l=0;
    
-//void make_tolower(char s[])
+//void mins(char s[])
 //{
-//  int length = strlen(s);
-//  for (int i=0;i<length;i++)
+//  int r;
+//  for (r=0;r<strlen(s);r++)
 //    {
-//      s[i]=toupper(s[i]);
+//      s[r]=toupper(s[r]);
 //    }
 //}
 
     void AjouterProduit(){
     	
   	SetColor(10);
+    
   	printf("\n\tdonner le code de votre produit:\t");
   	scanf("%s",p[i].code);
   	printf("\tdonner le nom du produit:\t");
@@ -85,7 +89,6 @@
 	  system("cls");
 	  main();
   }
-  // Ajouter plusieur produit
     void AjouterPlusiurProduit(){
   	int np;
   	SetColor(5);
@@ -124,7 +127,6 @@
 		system("cls");
 		main();
   }
-  // la fonction lister les produit
     void ListerProduit(){
   	int nl;
   	SetColor(1);
@@ -177,7 +179,7 @@
 		   		default:
 		   		
 		   				SetColor(4);
-		   				printf("\tc'est opération n'existe pas !!\n");
+		   				printf("\tc'est opération n'éxiste pas !!\n");
 		   				printf("\tentrer le 0 ou le 1:\t");
 		   				goto se;
 		   		break;
@@ -232,10 +234,7 @@
     	break;
     }
 }
-  // la fonction Acheter Produit
-  // **N.B :Pour chaque produit acheté, vous devez enregistrer le prix TTC et la date d’achat.**
     void Acheterproduit(){
-//    char *ctime(const time_t *timer);
 
 	int comp=0;
 	char code1[20];
@@ -262,12 +261,15 @@
 			}else{
 			while(q>p[j].quantite || q<0){
 				SetColor(5);
-				printf("la quantité de se produit dans le stock est %d\n",p[j].quantite);
-				printf("donc il faut entrer une quantité raisonable:\n");
+				printf("\tla quantité de se produit dans le stock est %d\n",p[j].quantite);
+				printf("\tdonc il faut entrer une quantité raisonable:\n\t");
 				scanf("%d",&q);
 			}
-			 time_t ti;
-             time(&ti);
+		     time_t now = time(NULL);
+             struct tm *dt =localtime(&now);
+		     st.day_achat=(dt->tm_mday);
+		     st.month_achat=(dt->tm_mon+1);
+		     st.year_achat=(dt->tm_year+1900);
              st.max=p[0].prix;
 			 st.min=p[0].prix;
              if(p[j].prix<st.min){
@@ -277,7 +279,7 @@
 			 	st.max=p[j].prix;
 			 }
              st.tot+=p[j].prix*q;
-		   	 strcpy(st.tiime,ctime(&ti));
+//		   	 strcpy(st.tiime,ctime(&ti));
         	 p[j].quantite-=q;
 //        	 st.tot1+=p[j].prix;
         	// il faut enregistrer la date et le prix ttc ;
@@ -306,7 +308,7 @@
 	}
 
 }
-  // la fonction Rechercher un produit
+ 
     void RechercherProduits(){
 	int o;
 	SetColor(1);
@@ -460,7 +462,7 @@
 	
 	
 }
-  // Etat du stock
+  
     void EtatStock(){
     	int comp=0;
     
@@ -504,7 +506,7 @@
 		main();
 	}
 }
-  //Alimenter le stock
+  
     void AlimenterStock(){
     char ch[20];
     int q,cmp=0;
@@ -769,14 +771,11 @@
 	
 }
 
-    //MAIN FUNCTION 
     int main() {
     // specifeid charcters
     SetConsoleOutputCP(GetACP());
     SetConsoleCP(GetACP());
-    // 
 
-    SetColor(7);
     int i,j;
     SetColor(11);
     
@@ -784,7 +783,6 @@
     for(i=0;i<30;i++){
     	
     	printf("*");
-    	// j'ai utilise ici usleep(1000microsecond) et non sleep car sleep(0.1) ne fonction pas  
     	usleep(1000);
 	}
     printf("  Bienvenu !! ");
@@ -816,13 +814,10 @@
     SetColor(15);
     int numerooperation;
     do{
-    printf("\tchoisire votre propre opération :\n");
-    printf("\t");
+    printf("\tchoisire votre propre opération :\n\t");
     scanf("%d",&numerooperation);
 	}while(numerooperation<1 || numerooperation>9);
-	// system("cls") fonction pour exit in old menu and present another menu
     system("cls");
-    // switch pour sortir d'un menu à un autre menu
     switch (numerooperation)
 	{
     	case 1:

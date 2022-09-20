@@ -66,9 +66,9 @@
   	SetColor(10);
     
   	printf("\n\tdonner le code de votre produit:\t");
-  	scanf("%s",p[i].code);
+  	scanf("%s",&p[i].code);
   	printf("\tdonner le nom du produit:\t");
-  	scanf("%s",p[i].nom);
+  	scanf("%s",&p[i].nom);
   	printf("\tdonner le prix du produit:\t");
   	scanf("%f",&p[i].prix);
   	printf("\tdonner la quantité du produit:\t");
@@ -130,9 +130,12 @@
     void ListerProduit(){
   	int nl;
   	SetColor(1);
+  	usleep(300000);
   	printf("\n\t1->lister tous les produits selon l’ordre alphabétique  croissant du nom\n");
-  	printf("\t2->lister tous les produits selon l’ordre  décroissant du prix\n\n\t");
+  	usleep(300000);
+  	printf("\n\t2->lister tous les produits selon l’ordre  décroissant du prix\n\n\t");
     SetColor(6);
+    usleep(300000);
 	printf("\n\t0-> Retour au menu principale\n\t");
 	wrong:
 	scanf("%d",&nl);
@@ -159,7 +162,7 @@
 				}
 			}
             for(j=0;j<i;j++){
-    	    printf("\n\tP[%d]   :Nom %s \t Prix %.2f \t PrixTTC %.2f  \n",j+1,p[j].nom,p[j].prix,p[j].prix*1.15);
+    	    printf("\n\tP[%d]   : Nom:  %s \t Prix: %.2f \t PrixTTC: %.2f  \n",j+1,p[j].nom,p[j].prix,p[j].prix*1.15);
     		}
 			SetColor(6);
 		   	printf("\n\t0-> Retour au menu principale\n");
@@ -200,7 +203,7 @@
     	    }
     	   	}
             for(j=0;j<i;j++){
-    	    printf("\tP[%d]  	Nom :%s \t Prix %.2f \t PrixTTC %.2f \n",j+1,p[j].nom,p[j].prix,p[j].prix*1.15);
+    	    printf("\n\tP[%d]   Nom:  %s \t Prix: %.2f \t PrixTTC: %.2f \n",j+1,p[j].nom,p[j].prix,p[j].prix*1.15);
     	    }
     	    SetColor(6);
     	    printf("\n\t0-> Retour au menu principale\n");
@@ -313,10 +316,13 @@
  
     void RechercherProduits(){
 	int o;
+	usleep(300000);
 	SetColor(1);
 	printf("\n\t1->chercher le produit selon le code\n");
-	printf("\t2->chercher le produit selon la quantité\n\n");
+	usleep(300000);
+	printf("\n\t2->chercher le produit selon la quantité\n\n");
 	SetColor(6);
+	usleep(300000);
 	printf("\t0->Retour au menu Principale\n\t");
 	oper:
 //	SetColor(2);	
@@ -472,7 +478,7 @@
 	for(j=0;j<i;j++){
 		if(p[j].quantite<3){
 		 SetColor(8);
-		 printf("\n\tP[%d]  Nom :%s \t Prix %.2f \t PrixTTC %.2f \n",j+1,p[j].nom,p[j].prix,p[j].prix*1.15);
+		 printf("\n\tP[%d]:  Nom: %s \t Prix: %.2f \t PrixTTC: %.2f \n",j+1,p[j].nom,p[j].prix,p[j].prix*1.15);
 		 comp++;
 		}
 	}
@@ -610,16 +616,20 @@
     void StatistiqueVente(){
     	SetColor(9);
     	int n,m;
+    	usleep(300000);
     	printf("\n\t1->Afficher le total des prix des produits vendus en journée courante \n");
-    	printf("\t2->Afficher la moyenne des prix des produits vendus en journée courante \n");
-    	printf("\t3->Afficher le Max des prix des produits vendus en journée courante \n");
-    	printf("\t4->Afficher le Min des prix des produits vendus en journée courante \n");
+    	usleep(300000);
+    	printf("\n\t2->Afficher la moyenne des prix des produits vendus en journée courante \n");
+    	usleep(300000);
+    	printf("\n\t3->Afficher le Max des prix des produits vendus en journée courante \n");
+    	usleep(300000);
+    	printf("\n\t4->Afficher le Min des prix des produits vendus en journée courante \n");
+    	usleep(300000);
     	SetColor(6);
     	printf("\n\t0->Retour au menu principale\n\t");
     	scanf("%d",&n);
     	menup:
     	switch(n){
-    	
     		case 0:
     			system("cls");
     			main();
@@ -658,9 +668,9 @@
 				 system("cls");
 			    
 				SetColor(5);
-				if(i==0){
+				if(l==0){
 					SetColor(4);
-					printf("\n\til n'ya aucun produit dans votre stock\n");
+					printf("\n\til n'ya aucun produit acheté ce jour là\n");
 						SetColor(2);
     		    printf("\n\t0->Retour au menu précedant ");
     		    printf("\n\t1->Retour au menu principale\n\t");
@@ -779,19 +789,19 @@
 
     int i,j;
     SetColor(11);
+    printf("\n\t\t ");
+    for(i=0;i<30;i++){
+    	printf(":");
+    	usleep(1000);
+	}
+	printf("!! bienvenue !!");
+	for(i=0;i<30;i++){
+		printf(":");
+		usleep(1000);
+	}
     
-    printf("\n\t\t\t\t \\");
-    for(i=0;i<30;i++){
-    	
-    	printf("*");
-    	usleep(1000);
-	}
-    printf("  Bienvenu !! ");
-    for(i=0;i<30;i++){
-    	printf("*");
-    	usleep(1000);
-	}
-    printf("\\ \n\n");
+    
+    printf("\n\n");
     SetColor(9);
               // menu
     printf("\t1-> Ajouter un nouveau produit\n\n");
@@ -823,19 +833,19 @@
     system("cls");
     switch (numerooperation)
 	{
-    	case 1:
+    	case  1 :
     	    AjouterProduit();
     	break;
-    	case 2:
+    	case  2 :
     		AjouterPlusiurProduit();
     	break;
-    	case 3:
+    	case  3 :
     		ListerProduit();
     	break;
-    	case 4:
+    	case 4 :
     		Acheterproduit();
     	break;
-    	case 5:
+    	case 5 :
     		RechercherProduits();
     	break;
     	case 6:
@@ -854,8 +864,5 @@
     		exit(0);
     	break;
 	}
-	
-	
-
 	return 0;
 }
